@@ -32,3 +32,6 @@ $PE{(pos,2i)} = sin(pos / 10000^{2i/d_{\text{model}}}) \\ PE{(pos,2i+1)} = cos(p
 2. QK 的维度必须相等 V的维度可以和他们不等
 
 3. 为什么 scaled dot product attention
+
+4. self-attention 自己对自己 值会很大吗
+
