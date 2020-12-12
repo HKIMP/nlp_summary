@@ -17,6 +17,15 @@ $PE{(pos,2i)} = sin(pos / 10000^{2i/d_{\text{model}}}) \\ PE{(pos,2i+1)} = cos(p
 
 
 
+mask在transformer中，目的有两个
+1. 让padding（不够长补0）的部分不参与attention的操作（普通的Scaled Dot-Product Attention）
+2. 在decoder input过程中，生成当前词语的概率分布时，让程序不会
+   注意到这个词后边的部分。（Masked Multi-Head Attention）
+
+
+
+
+
 
 ![图一](images/transformer.png)
 ![图二](images/transformer2.png)
@@ -31,4 +40,13 @@ $PE{(pos,2i)} = sin(pos / 10000^{2i/d_{\text{model}}}) \\ PE{(pos,2i+1)} = cos(p
 2. QK 的维度必须相等 V的维度可以和他们不等
 
 3. 为什么 scaled dot product attention
-4. 
+
+4. 哪写非得做mask啊，mask并不是为了减小计算量？而是不为了pad影响其他元素？
+
+5. 
+
+
+## 参考
+
+(NLPer看过来，一些关于Transformer的问题整理)[https://www.nowcoder.com/discuss/258321]
+
