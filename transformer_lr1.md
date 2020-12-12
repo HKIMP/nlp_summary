@@ -30,6 +30,7 @@ mask在transformer中，目的有两个
 ![图一](images/transformer.png)
 ![图二](images/transformer2.png)
 
+
 代码：
 1. transformer decoder 的input 是真实的 词 还是预测出来的词？
     还是训练的时候, decoder input 用真实的值 类似于 teacher foring
@@ -43,10 +44,14 @@ mask在transformer中，目的有两个
 
 4. 哪写非得做mask啊，mask并不是为了减小计算量？而是不为了pad影响其他元素？
 
-5. 
+5. self-attention 自己对自己 值会很大吗
+
 
 
 ## 参考
 
-(NLPer看过来，一些关于Transformer的问题整理)[https://www.nowcoder.com/discuss/258321]
+1. (NLPer看过来，一些关于Transformer的问题整理)[https://www.nowcoder.com/discuss/258321]
+
+
+
 
