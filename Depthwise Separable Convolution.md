@@ -3,7 +3,7 @@
 分为两步 一是 Depthwise, 二是 Separable
 
 QAnet提到，使用Depthwise Separable Convolution的好处是
-1. 更轻量，更快
+1. 更memory efficient，更 faser
 2. 更好泛化
    
 更好泛化 是因为 group 之后 相当于很多权重变为0
@@ -90,17 +90,99 @@ Dp^2 * (Dk^2 * M)
 
 
 ## 实现
-下边就是代码部分，Pytorch中 torch.nn.Conv1d()的参数 group=in_channels,表示depthwise convolution
+下边就是代码部分，Pytorch中 torch.nn.Conv1d()的参数 groups=in_channels,表示depthwise convolution
 ![图 12](images/57afc6bdd43f753d364555b0a82c6f081dfd890fe1df493a19f5413429dae24c.png)  
 且 groups的值，必须能被 in_channels 整除。这好理解，要不没办法分配啊。
+![图 13](images/090d05b3b3926b7aa28ee76da4335fb7d80709a05c760107d11d59783339e9f4.png)  
 
-首先要理解 group 什么意思。
 
+首先要理解 groups 什么意思。
 
+首先回顾 常规卷积。如果输入 feature map 尺寸为 (C, H, W)， 卷积核有 N 个。
+则输出的 feature map 与卷积核数量相同，也为N。
+
+每个卷积核的尺寸是 (C, K, K) 
+N个卷积核为 (N, C, K, K)，参数量为 N * C * K * K
+
+而 Group Convolution 是对 输入feature map 进行分组，然后每组分别进行卷积。
+假设 输入 feature map 的尺寸仍为 (C, H, W).
+
+如果设定分为 G 个 groups，则每组输入的 feature map 数量是 C/G, 
+
+每组的输出 feature map 数量是 N/G.
+
+每个卷积核的尺寸为 (C/G, K, K), 但卷积核总数仍是N个
+
+每组卷积核的数量是 N/G.
+
+因为卷积核只与同组的输入map进行卷积，卷积核的总参数量为 N * C/G * K * K
+可见, 总参数量减少为原来的 1/G。
+
+![图 14](images/68f5aa11308515421549f88e0401d81358ed0ee80d22bfb3c2c397f82d60d044.png)  
+
+Group Convolution 的用途：
+
+1. 减少参数量，分成G组，则该层的参数量较少为原来的1/G。
+
+2. Group Convolution 可以看成是 structed sparse。因为每个卷积核的尺寸
+   由 C * K * K -> C/G * K * K，可以将其与(C - C/G) * K * K的参数视为0.
+   有时甚至可以在减少参数量的同时 获得更好的效果(相当于正则)
+
+3. 当分组数量等于输入map数量。输出map数量也就等于输入map数量。
+   此时 Group convolution -> Depthwise Convolution。
 
 
 
 总结代码
+```python
+import torch
+
+in_channels, out_channels = 6, 10
+
+width, height = 100, 100
+kernel_size = 3
+batch_size = 1
+
+input = torch.randn(batch_size, in_channels, width, height)
+
+conv_layer = torch.nn.Conv2d(in_channels, out_channels, kernel_size=kernel_size)
+
+output = conv_layer(input)
+print(input.shape)
+print(output.shape)
+print(conv_layer.weight.shape)
+```
+输出：
+```
+torch.Size([1, 6, 100, 100])
+torch.Size([1, 10, 98, 98])
+torch.Size([10, 6, 3, 3])
+```
+加入groups=2
+```python
+import torch
+
+in_channels, out_channels = 6, 10
+
+width, height = 100, 100
+kernel_size = 3
+batch_size = 1
+
+input = torch.randn(batch_size, in_channels, width, height)
+
+conv_layer = torch.nn.Conv2d(in_channels, out_channels, kernel_size=kernel_size, groups=2)
+
+output = conv_layer(input)
+print(input.shape)
+print(output.shape)
+print(conv_layer.weight.shape)
+```
+
+```
+torch.Size([1, 6, 100, 100])
+torch.Size([1, 10, 98, 98])
+torch.Size([10, 3, 3, 3])
+```
 
 
 
