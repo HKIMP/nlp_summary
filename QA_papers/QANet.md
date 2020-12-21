@@ -6,3 +6,5 @@ The key motivation behind the design of the model:
 
 ##??
 1. 怎么test啊
+2.  损失函数
+3.   数据怎么转换的
