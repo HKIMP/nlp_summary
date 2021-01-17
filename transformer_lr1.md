@@ -3,6 +3,7 @@ transformer是字作为输入 不是词？？
 
 transformer的 位置编码是不训练的 bert的位置编码是训练的
 
+为什么缩放
 
 ## positional embedding 相关
 
@@ -34,9 +35,9 @@ mask在transformer中，目的有两个
 代码：
 1. transformer decoder 的input 是真实的 词 还是预测出来的词？
     还是训练的时候, decoder input 用真实的值 类似于 teacher foring
-    测试的时候，用预测的值。
+    测试的时候，用预测的值。 对 teacher forcing。
 
-    s2s 的训练过程也是真实值作为 decoder 的输入吗
+    s2s 的训练过程也是真实值作为 decoder 的输入吗 对。
 
 2. QK 的维度必须相等 V的维度可以和他们不等
 
@@ -53,6 +54,9 @@ mask在transformer中，目的有两个
 1. (NLPer看过来，一些关于Transformer的问题整理)[https://www.nowcoder.com/discuss/258321]
    
 2. (Transformer哪家强？Google爸爸辨优良)[https://mp.weixin.qq.com/s?__biz=MzIwNzc2NTk0NQ==&mid=2247503650&idx=1&sn=c2030b24daa7bf0f227379dcb639930f&chksm=970fe7f4a0786ee2f85632deb187a3d4941535b7ef93d37fb86ff25d4d7f4e163286787f1771&mpshare=1&scene=24&srcid=12118PQsnZrR88GSPkM1zl8T&sharer_sharetime=1607679147913&sharer_shareid=3957db59f3d6598cbfd3de3855b2c92e#rd]
+
+3. (Transformer 详解)[https://wmathor.com/index.php/archives/1438/]
+
 
 
 
