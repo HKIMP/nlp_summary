@@ -1,4 +1,4 @@
-
+bert 使用的 transformer encoder 结构不一样吗
 
 
 
