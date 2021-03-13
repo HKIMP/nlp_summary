@@ -1,5 +1,9 @@
 bert 使用的 transformer encoder 结构不一样吗
 
+实际bert怎么用的
+
+bert bpe
+bert vocab.txt 没有的词
 
 
 
