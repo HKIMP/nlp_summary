@@ -30,4 +30,3 @@ roberta采用的是byte级别的bpe编码，官方词表包好5w多个byte级别
 6. [bert第三篇：tokenizer](https://blog.csdn.net/iterate7/article/details/108959082)
 7. [BERT - Tokenization and Encoding](https://albertauyeung.github.io/2020/06/19/bert-tokenization.html)
 8. [BertWordPieceTokenizer vs BertTokenizer from HuggingFace](https://stackoverflow.com/questions/62405155/bertwordpiecetokenizer-vs-berttokenizer-from-huggingface)
-9. 
