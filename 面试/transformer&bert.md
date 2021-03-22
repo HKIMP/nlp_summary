@@ -6,7 +6,7 @@ bert bpe
 bert vocab.txt 没有的词
 
 
-
+transformer源码 不同的QKV矩阵？
 
 
 
