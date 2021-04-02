@@ -6,6 +6,12 @@ bert bpe
 bert vocab.txt 没有的词
 
 transformer源码 不同的QKV矩阵？
+
+bert base12层encoder bert large 24层encoder
+注意bert不是12个transformer堆叠的，是encoder堆叠的。
+transformer是6个encoder组成的编码端，6个decoder组成了解码端。
+
+
 ### question
 1. 为什么要mask，为什么80%概率 用[mask]来替换
 2. 
