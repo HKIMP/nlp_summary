@@ -45,6 +45,8 @@ bert pretrain模型直接拿来用作 sentence embedding 效果甚至不如word 
 
 
 ### 如何做训练MLM+NSP
+MASK任务
+
 BERT预训练的时候，使用的是大量的无标注的语料。
 无监督目标函数：
 AR（autogressive）自回归模型：只能考虑单侧信息：典型就是GPT
@@ -68,7 +70,61 @@ for index in mask_indices:
             masked_token = random.choice(vocab_list)
 ```
 
+NSP任务
+NSP样本如下：
+1. 从训练语料库中取出两个连续的段落作为正样本。
+2. 从不同的文档中随机创建一对段落作为负样本。
+缺点：主题预测和连贯性预测合并为一个单项任务。
 
+
+
+
+
+## 如何提升BERT下游任务效果
+1. 获取预训练bert
+2. 基于任务数据进行微调
+先Domain transfer（大量微博文本） 再 Task transfer（微博情感文本） 最后 fine-tune（任务相关数据）性能是最好的
+
+如何在相同领域数据中进行further pre-train
+1. 动态mask：就是每次epoch去训练的时候mask，而不是一直使用同一个
+2. n-gram mask：其实比如ernie和SpanBert都是类似于做了实体词的mask。
+
+参数：
+Batch_size: 16, 32 影响不太大
+Learning rate(Adam): 5e-5, 3e-5, 2e-5
+Number of epochs: 3, 4
+Weighted decay修改后的adam，使用warm-up，搭配线性衰减
+
+数据增强、自蒸馏、外部知识的融入
+
+## transformer
+![图 3](../images/e4e1bd274203012001810e42b6e4ddb2faf1f6208b3b5ed3d08e22cc1fd70bba.png)  
+注意encoder结构相同，但是参数是独立训练的。
+![图 4](../images/f75f61d82d01c7d594251635995156201efb54a385dd81fc79af263bd224a423.png)  
+
+encoder可以分为三个部分：输入+注意力机制+前馈神经网络
+![图 5](../images/fffe70231ec8a7815cb2f8ea770b30eb399f8368efa8b7be3a638e5c1492d572.png)  
+
+输入：embedding+位置嵌入
+注意RNN的所有time stamp共用一套参数
+RNN梯度消失？RNN的梯度是一个总的梯度和，它的梯度消失并不是变为0。而是总梯度被近距离梯度阻挡，被远距离梯度忽略不计。
+
+偶数维度用cos，奇数维度用sin
+![图 6](../images/4bcaf668634ca577cfbcc10fc3c5b8718008cb3a07bd631c399b2c61dfe2a9e6.png)  
+
+引申为什么位置嵌入会有用
+位置向量中蕴含了相对位置信息。
+但是这种相对位置信息会在注意力机制那里消失。？？？
+
+注意力机制
+KV来自encoder，Q来自decoder
+
+
+残差，LayerNorm
+残差 梯度消失？
+
+为什么使用Layer Normalizaion 不用 BN
+BN效果差 BN不适合NLP
 
 
 
