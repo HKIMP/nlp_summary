@@ -140,8 +140,11 @@ bert模型的预训练过程其实就是模仿我们学习语言的过程。思�
 预测一个词汇时，模型并不知道输入对应队尾的
 
 
+## BERT的基本原理是什么
+BERT是'Bidirectional Encoder Representations from Transformers'的缩写，整体是一个自编码语言模型（AutoEncoder LM）
+并且设计了两个任务来预训练改模型。
 
-
+* 第一个任务采用MaskLM的方式来训练语言模型，通俗的说就是在输入一句话的时候，
 
 
 
