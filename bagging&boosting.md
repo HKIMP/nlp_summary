@@ -1,0 +1,20 @@
+
+## bagging
+Bagging是Bootstrap Aggregating的缩写。Bagging是为了得到泛化能力强的集成，因而就需要让各个子学习器之间尽可能独立，但是如果将样本分为了不同的不重合子集，那么每个基学习器学习的样本就会不足。所以它采用一种自助采样的方法（boostrap sampling）每次从数据集中随机选择一个subset，然后放回初始数据集，下次取时，该样本仍然有一定概率取到。然后根据对每个subset训练出一个基学习器，然后将这些基学习器进行结合。对于分类任务可以通过vote来输出结果，回归任务可以求平均值。Bagging的代表是Random Forest，RF是在决策树作为基学习器通过Bagging思想建立的。
+
+
+
+## boosting
+Boosting是一种将弱学习器转换为强学习器的算法，它的机制是：先从初始训练集训练出一个基学习器，然后根据基学习器的表现对训练样本进行调整，使得先前基学习器做错的训练样本在后续的训练中得到更多的关注，然后基于调整后的样本分布来训练下一个基学习器。Boosting的代表是Adam Boosting。
+
+![图 2](images/fc0125944c310e38d5c958570b0b690076f43d19cbc990d4a0457e32e4c2469d.png)  
+
+如果把Bagging看作是多个基分类器的线性组合，那么Stacking就是多个基分类器的非线性组合。Stacking可以很灵活，它可以将学习器一层一层地堆砌起来。
+
+
+blending和stacking类似，主要是对已学习好的基学习器的融合的不同，blending是线性融合，
+而stacking是非线性融合。
+
+blending只使用了一部分数据集作为留出集进行验证，而stacking使用多折交叉验证。比使用单一留出集更稳定
+
+Blending与Stacking大致相同，只是Blending的主要区别在于训练集不是通过K-Fold的CV策略来获得预测值从而生成第二阶段模型的特征，而是建立一个Holdout集。简单来说，Blending直接用不相交的数据集用于不同层的训练。
