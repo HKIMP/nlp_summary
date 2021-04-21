@@ -27,6 +27,7 @@ Blending与Stacking大致相同，只是Blending的主要区别在于训练集�
 
 ![图 3](images/afdcc0b9a8628135c90e9fc7377ae1ce4037ea09928a0f5634b4f10a2e852a59.png)  
 ![图 4](images/4bbf209dfb57d3c5ffa02368792a7b58bed8c57794b4c1e58ad33acff7e2b692.png)  
+![图 5](images/e699fa9a69e05929b11a7c0d84431922d4882d0b04d4d5489120eb2f4201ef57.png)  
 
 
 

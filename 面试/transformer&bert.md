@@ -11,7 +11,7 @@ bert base12层encoder bert large 24层encoder
 注意bert不是12个transformer堆叠的，是encoder堆叠的。
 transformer是6个encoder组成的编码端，6个decoder组成了解码端。
 
-
+bert是对字级别的，不是词级别的
 ### question
 1. 为什么要mask，为什么80%概率 用[mask]来替换
 
