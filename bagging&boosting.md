@@ -117,6 +117,10 @@ def get_oof(clf, x_train, y_train, x_test):
 ```
 
 
+
+## stacking blending区别
+
+
 参考：
 [林轩田机器学习 | 机器学习技法课程笔记8 --- Adaptive Boosting](https://blog.csdn.net/sdu_hao/article/details/103764654)
 [集成学习中bagging,boosting,blending,stacking这几个概念的区别是什么？](https://www.zhihu.com/question/63836832)

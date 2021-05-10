@@ -12,6 +12,11 @@ gbdt如何用于分类
 [机器学习算法GBDT的面试要点总结-上篇](https://www.cnblogs.com/ModifyRong/p/7744987.html)
 
 
+## Q:
+1. gbdt用的是cart回归树吗
+2. [为什么xgboost/gbdt在调参时为什么树的深度很少就能达到很高的精度？](https://www.zhihu.com/question/45487317)
+3. [模型的偏差和方差](https://blog.csdn.net/qq_41951186/article/details/82534050)
+
 参考：
 1. [GBDT 总结](https://zhuanlan.zhihu.com/p/105497113)
 2. [决策树汇总](https://zhuanlan.zhihu.com/p/103235259)
