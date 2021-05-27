@@ -1,11 +1,12 @@
+## Questions
 bert 使用的 transformer encoder 结构不一样吗
 
 实际bert怎么用的
 
 bert bpe
 bert vocab.txt 没有的词
-
 transformer源码 不同的QKV矩阵？
+
 
 bert base12层encoder bert large 24层encoder
 注意bert不是12个transformer堆叠的，是encoder堆叠的。
