@@ -17,6 +17,12 @@ lstm架构更容易保存许多时间步上的信息
 相比之下，普通rnn更难学习重复使用并且在隐藏状态中保存信息的矩阵
 LSTM并不保证没有消失/爆炸梯度，但它确实为模型提供了一种更容易的方法来学习远程依赖关系
 
+lstm如何解决梯度消失，梯度爆炸？
+![图 1](images/c52363b4eb6d4f5ff225d0e16a77359a6bb81b53619e75900fb2a05af8343bba.png)  
+![图 3](images/edcd3ecd44e458963fcb85ed431f9f6bd27251f38dbd8bf36e906c43311a8dee.png)  
+
+
+
 
 
 
@@ -36,5 +42,11 @@ rnn梯度消失
 ![图 3](images/4d178719a3478d047e742c65df69284da1685499c5cf9f5de88de43a1657e8a9.png)  
 
 
+
+
+
+
 参考
 1. [07 Vanishing Gradients and Fancy RNNs](https://looperxx.github.io/CS224n-2019-07-Vanishing%20Gradients%20and%20Fancy%20RNNs/)
+2. [LSTM如何来避免梯度弥散和梯度爆炸？](https://www.zhihu.com/question/34878706)
+3. 
